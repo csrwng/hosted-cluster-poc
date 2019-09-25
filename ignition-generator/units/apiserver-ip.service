@@ -1,0 +1,13 @@
+[Unit]
+Description=Sets up local IP to proxy API server requests
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/setup-apiserver-ip.sh
+RemainAfterExit=true
+ExecStop=/usr/bin/teardown-apiserver-ip.sh
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target

@@ -2,6 +2,11 @@
 
 set -eux
 
+source ../config.sh
+
+echo "copying HAProxy config"
+envsubst < ./apiserver-haproxy.cfg.template > fake-root/etc/haproxy/apiserver-haproxy.cfg
+
 echo "copying PKI assets"
 cp ../pki/kubelet-bootstrap.kubeconfig fake-root/etc/kubernetes/kubeconfig
 # kubeconfig needs to be world readable because network-operator reads it for server URL

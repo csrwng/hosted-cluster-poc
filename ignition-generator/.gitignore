@@ -3,3 +3,4 @@ bootstrap-final.ign
 final.ign
 *.pem
 *.kubeconfig
+apiserver-haproxy.cfg
