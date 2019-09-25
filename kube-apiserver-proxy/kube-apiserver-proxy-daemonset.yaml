@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kube-apiserver-proxy
+  namespace: kube-system
+  labels:
+    k8s-app: kube-apiserver-proxy
+spec:
+  selector:
+    matchLabels:
+      app: kube-apiserver-proxy
+  template:
+    metadata:
+      labels:
+        app: kube-apiserver-proxy
+    spec:
+      hostNetwork: true
+      containers:
+      - name: haproxy
+        image: docker.io/haproxy:2.0.6
+        volumeMounts:
+        - name: config
+          mountPath: /usr/local/etc/haproxy
+      volumes:
+      - name: config
+        configMap:
+          name: kube-apiserver-proxy-config
