@@ -7,9 +7,9 @@ spec:
   cloudConfig:
     name: ""
 status:
-  apiServerInternalURI: https://tugboat.lab.variantweb.net:31123
-  apiServerURL: https://tugboat.lab.variantweb.net:31123
-  etcdDiscoveryDomain: lab.variantweb.net
+  apiServerInternalURI: https://api.hypershift.hive.openshift.com:6443
+  apiServerURL: https://api.hypershift.hive.openshift.com:6443
+  etcdDiscoveryDomain: hypershift.hive.openshift.com
   infrastructureName: kubernetes
   platform: None
   platformStatus:

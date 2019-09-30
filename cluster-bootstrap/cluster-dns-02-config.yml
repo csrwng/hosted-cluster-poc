@@ -4,5 +4,5 @@ metadata:
   creationTimestamp: null
   name: cluster
 spec:
-  baseDomain: lab.variantweb.net
+  baseDomain: apps.hypershift.hive.openshift.com
 status: {}
