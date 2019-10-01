@@ -1,0 +1,32 @@
+apiVersion: v1
+data:
+  install-config: |
+    apiVersion: v1
+    baseDomain: hive.openshift.com
+    compute:
+    - hyperthreading: Enabled
+      name: worker
+      replicas: 3
+    controlPlane:
+      hyperthreading: Enabled
+      name: master
+      replicas: 3
+    metadata:
+      name: hypershift
+    networking:
+      clusterNetwork:
+      - cidr: 10.128.0.0/14
+        hostPrefix: 23
+      machineCIDR: 10.0.0.0/16
+      networkType: OpenShiftSDN
+      serviceNetwork:
+      - 172.31.0.0/16
+    platform: {}
+    pullSecret: ""
+    sshKey: |
+      ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCY6R7UyYHB9XB/0LTJw8XFuPTvyZyjsrvCDOgCm5/r3zqnkQv6zUgXzkqYYKmrlD/L5wZ1QVEwgSwJch2WjC8OALjdMkxPEMG/Z4vY6C5xUqlADkUVYfburnDotJ1Dc2Y24G7u7iSuuIOLU/Pld5LnPuriA8JBaFNAY/PNz7QQMMnCDQGCvnYSbf60UCbkvWUXwBetuNH5ht24BeSj4j8j0ESI2FekIGI0EfUVU7UQx8RWE/jYgPNEq/cjR+cK6VklIOf4N9+fLuosJR+ShcpfUCjhhzYobFgxI0KrO/AKqu/m5ZI1Od/jecrOP3pifzH+67DhxzELqVgZWCJA8xat
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: cluster-config-v1
+  namespace: kube-system

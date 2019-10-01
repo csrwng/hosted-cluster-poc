@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: cluster-version-operator
-        image: ${RELEASE_IMAGE}
+        image: quay.io/csrwng/release:hosted
         imagePullPolicy: Always
         args:
           - "start"
@@ -27,10 +27,13 @@ spec:
           - "--v=4"
           - "--exclude-manifests=.*"
           - "--include-manifests=.*_cluster-network-operator_.*"
+          - "--include-manifests=.*_service-ca-operator_.*"
           - "--include-manifests=.*_dns-operator_.*"
           - "--include-manifests=.*_console-operator_.*"
           - "--include-manifests=.*_cluster-samples-operator_.*"
           - "--include-manifests=.*_cluster-node-tuning-operator_.*"
+          - "--include-manifests=.*_cloud-credential-operator_.*"
+          - "--include-manifests=.*_cluster-ingress-operator_.*"
         resources:
           requests:
             cpu: 20m
