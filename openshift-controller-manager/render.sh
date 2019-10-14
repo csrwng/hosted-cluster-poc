@@ -2,6 +2,7 @@
 
 set -eu
 
+source ../config.sh
 source ../lib/common.sh
 
 export DOCKER_BUILDER_IMAGE=$(image_for docker-builder)
@@ -26,4 +27,14 @@ rm -f config.yaml.rendered
 export OPENSHIFT_CONTROLLER_MANAGER_IMAGE=$(image_for openshift-controller-manager)
 envsubst < openshift-controller-manager-deployment.yaml > ../manifests/managed/openshift-controller-manager-deployment.yaml
 
-cp openshift-controller-manager-namespace.yaml ../manifests/user
+cp openshift-controller-manager-namespace.yaml ../manifests/user/00-openshift-controller-manager-namespace.yaml
+cat > ../manifests/user/openshift-controller-manager-service-ca.yaml <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+    service.beta.openshift.io/inject-cabundle: "true"
+  name: openshift-service-ca
+  namespace: openshift-controller-manager
+data: {}
+EOF
