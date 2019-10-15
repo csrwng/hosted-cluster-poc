@@ -167,6 +167,12 @@ remove_nlb "${APILB}"
 remove_target_group "${APILB}"
 remove_eip "${APILB}"
 
+VPNLB="${INFRANAME}-${NAMESPACE}-vpn"
+remove_cname_record "${ZONE_ID}" "${EXTERNAL_OPENVPN_DNS_NAME}."
+remove_nlb "${VPNLB}"
+remove_target_group "${VPNLB}"
+remove_eip "${VPNLB}"
+
 # Remove router load balancer
 ROUTERLB="${INFRANAME}-${NAMESPACE}-apps"
 remove_cname_record "${ZONE_ID}" "\\\\053.${INGRESS_SUBDOMAIN}."
